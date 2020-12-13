@@ -1,0 +1,59 @@
+package JDBC.Controller;
+
+
+
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+
+
+
+import JDBC.*;
+import JDBC.inter.MainInte;
+
+public class Controller implements MainInte {
+
+    @Override
+    public boolean insert(Employee e) {
+
+        String querry = QueeryGenator.insertStringforExecution(e);
+        System.out.println(querry);
+        return QueryClass.insertData(querry);
+    }
+
+    @Override
+    public boolean update(Employee e) {
+        String querry = QueeryGenator.updateQuerry(e);
+        return QueryClass.updateDate(querry);
+
+    }
+
+    @Override
+    public boolean delete(int id) {
+        String querry = QueeryGenator.statusChangeQuerry(id);
+        System.out.println(querry);
+        return QueryClass.UpdateStatus(querry);
+    }
+
+    @Override
+    public List<DisEmployee> display(int id) {
+        
+        String querry = QueeryGenator.selectQuerry();
+        System.out.println(querry);
+        ResultSet rs = QueryClass.retriveData(querry);
+        List<DisEmployee> disEmployee = new ArrayList<DisEmployee>();
+        try {
+            while (rs.next()) {
+                disEmployee.add(new DisEmployee(rs.getString(1),rs.getString(2),rs.getString(3),rs.getLong(4),rs.getString(5),rs.getString(6),rs.getBoolean(7)));
+            }
+        } catch (SQLException e) {
+            
+            e.printStackTrace();
+        }
+        return disEmployee;
+    }
+
+    
+    
+}

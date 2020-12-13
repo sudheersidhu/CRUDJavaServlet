@@ -1,0 +1,13 @@
+package JDBC.inter;
+
+import java.util.List;
+
+import Models.DisEmployee;
+import Models.Employee;
+
+public interface MainInte {
+    public boolean insert(Employee e);
+    public boolean update(Employee e);
+    public boolean delete(int id);
+    public List<DisEmployee> display(int id);
+}

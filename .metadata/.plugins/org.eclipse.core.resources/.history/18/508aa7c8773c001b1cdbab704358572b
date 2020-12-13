@@ -1,0 +1,28 @@
+package Models;
+
+public class DisEmployee {
+    public final String name;
+    public final String dateOfJoin;
+    public final String department;
+    public final long number;
+    public final String emailId;
+    public final String highestQualification;
+    public  final boolean status;
+
+    public DisEmployee(String name, String dateOfJoin, String department, long number, String emailId,
+            String highestQualification,boolean status) {
+        this.name = name;
+        this.dateOfJoin = dateOfJoin;
+        this.department = department;
+        this.number = number;
+        this.emailId = emailId;
+        this.highestQualification = highestQualification;
+        this.status=status;
+    }
+    @Override
+    public String toString() {
+        
+        return "name-"+name+"|dataofjoin-"+dateOfJoin+"|department-"+department+"|number-"+number+
+        "|emailid-"+emailId+"|highestQualificaton-"+highestQualification+"|status-"+status;
+    }
+}

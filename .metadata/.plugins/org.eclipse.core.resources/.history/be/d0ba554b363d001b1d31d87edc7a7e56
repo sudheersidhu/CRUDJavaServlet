@@ -1,0 +1,355 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!-- Font Awesome -->
+<link rel="stylesheet"
+	href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+<!-- Google Fonts -->
+<link rel="stylesheet"
+	href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap">
+<!-- Bootstrap core CSS -->
+<link
+	href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css"
+	rel="stylesheet">
+<!-- Material Design Bootstrap -->
+<link
+	href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/css/mdb.min.css"
+	rel="stylesheet">
+<link rel="stylesheet" href="Login.css">
+<link rel="stylesheet" href="Landingpage.css">
+
+<title>Hello, world!</title>
+</head>
+
+<body>
+	<div class="card " id="card">
+		<h4 class="ml-4 mt-3">CRUD</h4>
+		<ul class="nav nav-tabs  flex-column flex-sm-row" id="myTab"
+			role="tablist">
+			<li class="flex-sm-fill text-sm-center nav-tabs" role="presentation">
+				<a class="nav-link active " id="Create-tab" data-bs-toggle="tab"
+				href="#Create" role="tab" aria-controls="home" aria-selected="true">Create</a>
+			</li>
+			<li class="flex-sm-fill text-sm-center nav-tabs" role="presentation">
+				<a class="nav-link " id="Read-tab" data-bs-toggle="tab" href="#Read"
+				role="tab" aria-controls="Read" aria-selected="Read"
+				onclick="Reading();">Read</a>
+			</li>
+			<li class="flex-sm-fill text-sm-center nav-tabs" role="presentation">
+				<a class="nav-link" id="Update-tab" data-bs-toggle="tab"
+				href="#Update" role="tab" aria-controls="Update"
+				aria-selected="false">Update</a>
+			</li>
+
+		</ul>
+		<div class="tab-content" id="myTabContent">
+			<div class="tab-pane fade show active" id="Create" role="tabpanel"
+				aria-labelledby="Create-tab">
+				<form class="needs-validation" enctype="multipart/form-data"
+					method="post" id="fq" novalidate>
+					<div class="form-row flex-row">
+						<div class="col-md-3 mb-8 ml-4 mt-3">
+							<label for="validationCustom01">Employee ID</label> <input
+								type="text" class="form-control" id="validationCustom01"
+								name="id1" readonly required>
+							<div class="valid-feedback">Looks good!</div>
+						</div>
+						<div class="col-md-3 mb-8 ml-4 mt-3">
+							<label for="validationCustom01">First name</label> <input
+								type="text" class="form-control" id="validationCustom02"
+								placeholder="First name" name="fname" required>
+							<div class="valid-feedback">Looks good!</div>
+						</div>
+						<div class="col-md-3 mb-8 ml-4 mt-3">
+							<label for="validationCustom02">Last name</label> <input
+								type="text" class="form-control" id="validationCustom03"
+								placeholder="Last name" name="lname" required>
+							<div class="valid-feedback">Looks good!</div>
+						</div>
+					</div>
+
+					<div class="form-row">
+						<div class="col-md-3 mb-8 ml-4 mt-3">
+							<label for="validationCustom03">Date</label> <input type="date"
+								class="form-control" id="validationCustom04" name="date"
+								required>
+							<div class="invalid-feedback">Please provide a valid city.
+							</div>
+						</div>
+						<div class="col-md-3 mb-8 ml-4 mt-3">
+							<label for="validationCustom04">Department</label> <input
+								type="text" class="form-control" id="validationCustom05"
+								placeholder="Department" name="Department" required>
+							<div class="invalid-feedback">Please provide a valid state.
+							</div>
+						</div>
+						<div class="col-md-3 mb-8 ml-4 mt-3">
+							<label for="validationCustom05">Salary</label> <input
+								type="number" class="form-control" id="validationCustom06"
+								placeholder="00000" name="sal">
+						</div>
+					</div>
+					<div class="form-row">
+						<div class="col-md-3 mb-8 ml-4 mt-3">
+							<label for="validationCustom03">Contact No</label> <input
+								type="number" class="form-control" id="validationCustom77"
+								placeholder="+91 000000000" name="num" pattern="^(?:(?:\+|0{0,2})91(\s*[\-]\s*)?|[0]?)?[789]\d{9}$" maxlength="10" required>
+							<div class="invalid-feedback">Please provide a Contact No.
+							</div>
+						</div>
+						<div class="col-md-3 mb-8 ml-4 mt-3">
+							<label for="validationCustom08">Email ID</label> <input
+								type="email" class="form-control" id="validationCustom08"
+								placeholder="Email ID" name="mail" required>
+							<div class="invalid-feedback">Please provide a Email.</div>
+						</div>
+						<div class="col-md-3 ml-4 mt-3">
+							<label for="validationCustom04">Experience</label> <select
+								class="browser-default custom-select custom-select-m" name="ex">
+								<option selected>Open this select menu</option>
+								<option value="Yes">Yes</option>
+								<option value="No">NO</option>
+							</select>
+						</div>
+					</div>
+					<div class="form-row">
+						<div class="col-md-3  ml-4 mt-3">
+							<label for="validationCustom10">Qualification</label> <input
+								type="text" class="form-control" id="validationCustom10"
+								name="qua">
+
+						</div>
+						<div class="col-md-3  ml-4 mt-3">
+							<label for="validationCustom11">University/Colleage</label> <input
+								type="text" class="form-control" id="validationCustom11"
+								placeholder="Other" name="col">
+						</div>
+						<div class="col-md-3  ml-4 mt-3">
+							<label for="validationCustom12">Percentage/Completion
+								year </label>
+							<div class="input-group">
+								<input type="number" class="form-control "
+									id="validationCustom12" placeholder="00000" name="per">
+								<input type="text" class="form-control" id="validationCustom13"
+									placeholder="00000" name="com">
+							</div>
+						</div>
+					</div>
+					<div class="form-row">
+						<div class="col-md-3  ml-4 mt-3">
+							<label for="validationCustom10">Permanet</label>
+							<textarea class="form-control" name="perm"
+								id="validationCustom14" rows="2"></textarea>
+						</div>
+						<div class="col-md-3  ml-4 mt-3">
+							<label for="validationCustom11">Present</label>
+							<textarea class="form-control" name="pres"
+								id="validationCustom15" rows="2"></textarea>
+						</div>
+						<div class="col-md-3  ml-5 mt-5">
+							<!--  	action="insert">-->
+							<button class="btn btn-primary btn-lg" type="submit"
+								onClick="Inserting();">Submit form</button>
+						</div>
+					</div>
+					<div class="col-md-2 pb-5"></div>
+				</form>
+			</div>
+			<div class="tab-pane fade  " id="Read" role="tabpanel"
+				aria-labelledby="Read-tab">
+				<div class="empTable table-responsive ">
+					<table class="table table-bordered" id="table"
+						onchange="Reading();">
+						<thead>
+							<tr class="table-active">
+								<th scope="col">Employee Id</th>
+								<th scope="col">Name</th>
+								<th scope="col">Contact No</th>
+								<th scope="col">Email Id</th>
+								<th scope="col">Highest Qualification</th>
+								<th scope="col">Department</th>
+								<th scope="col">Date of join</th>
+								<th scope="col"></th>
+							</tr>
+						</thead>
+					</table>
+					<br>
+				</div>
+				<div class="col-md-2 pb-5"></div>
+			</div>
+
+			<div class="tab-pane fade" id="Update" role="tabpanel"
+				aria-labelledby="Update-tab">
+				<form class="needs-validation" enctype="multipart/form-data"
+					method="post" id="fz" novalidate>
+					<div class="form-row flex-row">
+						<div class="col-md-3 mb-8 ml-4 mt-3">
+							<label for="validationCustom01">Employee ID</label> <input
+								type="text" class="form-control" id="validationCustom01"
+								name="id" readonly required>
+							<div class="valid-feedback">Looks good!</div>
+						</div>
+						<div class="col-md-3 mb-8 ml-4 mt-3">
+							<label for="validationCustom021">First name</label> <input
+								type="text" class="form-control" id="validationCustom21"
+								placeholder="First name" name="fnamez" required>
+							<div class="valid-feedback">Looks good!</div>
+						</div>
+						<div class="col-md-3 mb-8 ml-4 mt-3">
+							<label for="validationCustom02">Last name</label> <input
+								type="text" class="form-control" id="validationCustom31"
+								placeholder="Last name" name="lnamez" required>
+							<div class="valid-feedback">Looks good!</div>
+						</div>
+					</div>
+
+					<div class="form-row">
+						<div class="col-md-3 mb-8 ml-4 mt-3">
+							<label for="validationCustom03">Date</label> <input type="date"
+								class="form-control" id="validationCustom04" name="dateFormat"
+								required>
+							<div class="invalid-feedback">Please provide a valid city.
+							</div>
+						</div>
+						<div class="col-md-3 mb-8 ml-4 mt-3">
+							<label for="validationCustom04">Department</label> <input
+								type="text" class="form-control" id="validationCustom05"
+								placeholder="Department" name="department" required>
+							<div class="invalid-feedback">Please provide a valid state.
+							</div>
+						</div>
+						<div class="col-md-3 mb-8 ml-4 mt-3">
+							<label for="validationCustom05">Salary</label> <input
+								type="number" class="form-control" id="validationCustom06"
+								placeholder="00000" name="salary">
+						</div>
+					</div>
+					<div class="form-row">
+						<div class="col-md-3 mb-8 ml-4 mt-3">
+							<label for="validationCustom03">Contact No</label> <input
+								type="number" class="form-control" id="validationCustom07"
+								placeholder="+91 000000000" name="contactNo" maxlength="10" required>
+							<div class="invalid-feedback">Please provide a Contact No.
+							</div>
+						</div>
+						<div class="col-md-3 mb-8 ml-4 mt-3">
+							<label for="validationCustom08">Email ID</label> <input
+								type="email" class="form-control" id="validationCustom08"
+								placeholder="Email ID" name="emailID" required>
+							<div class="invalid-feedback">Please provide a Email.</div>
+						</div>
+						<div class="col-md-3 ml-4 mt-3">
+							<label for="validationCustom04">Experience</label> <select
+								class="browser-default custom-select custom-select-m"
+								name="Experience">
+								<option selected>Open this select menu</option>
+								<option value="Yes">Yes</option>
+								<option value="No">NO</option>
+							</select>
+						</div>
+					</div>
+					<div class="form-row">
+						<div class="col-md-3  ml-4 mt-3">
+							<label for="validationCustom10">Qualification</label> <input
+								type="text" class="form-control" id="validationCustom10"
+								name="qualification">
+
+						</div>
+						<div class="col-md-3  ml-4 mt-3">
+							<label for="validationCustom11">University/Colleage</label> <input
+								type="text" class="form-control" id="validationCustom11"
+								placeholder="Other" name="university">
+						</div>
+						<div class="col-md-3  ml-4 mt-3">
+							<label for="validationCustom12">Percentage/Completion
+								year </label>
+							<div class="input-group">
+								<input type="number" class="form-control "
+									id="validationCustom12" placeholder="00000" name="percentage">
+								<input type="text" class="form-control" id="validationCustom13"
+									placeholder="00000" name="year">
+							</div>
+						</div>
+					</div>
+					<div class="form-row">
+						<div class="col-md-3  ml-4 mt-3">
+							<label for="validationCustom10">Permanet</label>
+							<textarea class="form-control" name="permanent"
+								id="validationCustom14" rows="2"></textarea>
+						</div>
+						<div class="col-md-3  ml-4 mt-3">
+							<label for="validationCustom11">Present</label>
+							<textarea class="form-control" name="presentAddress"
+								id="validationCustom15" rows="2"></textarea>
+						</div>
+						<div class="col-md-3  ml-5 mt-5">
+							<button class="btn btn-primary btn-lg" type="submit"
+								onClick="UpdateFrom();">Submit form</button>
+						</div>
+					</div>
+					<div class="col-md-2 pb-5"></div>
+				</form>
+				<div class="col-md-2 pb-5"></div>
+			</div>
+
+		</div>
+
+
+	</div>
+
+	<!-- JQuery -->
+	<script type="text/javascript"
+		src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<!-- Bootstrap tooltips -->
+	<script type="text/javascript"
+		src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js"></script>
+	<!-- Bootstrap core JavaScript -->
+	<script type="text/javascript"
+		src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/js/bootstrap.min.js"></script>
+	<!-- MDB core JavaScript -->
+	<script type="text/javascript"
+		src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/js/mdb.min.js"></script>
+	<script
+		src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"
+		integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW"
+		crossorigin="anonymous"></script>
+	<script src="">
+		
+	</script>
+	<script type='text/javascript'>
+$(window).load(function(){
+$(document).ready(function() {
+    $('#validationCustom77').blur(function(e) {
+        if (validatePhone('validationCustom77')) {
+            $('#validationCustom77').html('Valid Mobil Number');
+            $('#validationCustom77').css('color', 'green');
+        }
+        else {
+            $('#validationCustom77').html('Invalid Mobile Number');
+            $('#validationCustom77').css('color', 'red');
+        }
+    });
+});
+
+function validatePhone(txtPhone) {
+    var a = document.getElementById(txtPhone).value;
+    var filter = /[1-9]{1}[0-9]{9}/;
+    if (filter.test(a)) {
+        return true;
+    }
+    else {
+        return false;
+    }
+}
+});
+
+</script>
+
+</body>
+
+</html>

@@ -1,0 +1,133 @@
+package JDBC.Controller;
+
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+import JDBC.Models.DisEmployee;
+import JDBC.Models.Employee;
+import JDBC.SQLQueries.QueryClass;
+import JDBC.inter.MainInte;
+import JDBC.inter.QueeryGenator;
+
+public class Controller implements MainInte {
+
+	@Override
+	public boolean insert(Employee e) {
+
+		String querry = QueeryGenator.insertStringforExecution(e);
+		System.out.println(querry);
+		return QueryClass.insertData(querry);
+	}
+
+	@Override
+	public boolean update(Employee e,String id) {
+		String querry = QueeryGenator.updateQuerry(id);
+	PreparedStatement st=	QueryClass.updateDate(querry);
+		try {
+			System.out.println(querry);
+			st.setString(1, e.id);
+			st.setString(2, e.name);
+			st.setString(3, e.dateFormat);
+			st.setString(4, e.department);
+			st.setFloat(5, e.salary);
+			st.setString(6, e.Experience);
+			st.setString(7, e.permanent);
+			st.setString(8, e.presentAddress);
+			st.setString(9, e.qualification);
+			st.setString(10, e.university);
+			st.setFloat(11, e.percentage);
+			st.setString(12, e.year);
+			st.setString(13, e.contactNo);
+			st.setString(14, e.emailID);
+		return	st.execute();
+			
+		} catch (SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+	
+	return false;
+	}
+
+	@Override
+	public boolean delete(String id) {
+		String querry = QueeryGenator.statusChangeQuerry(id);
+		System.out.println(querry);
+		return QueryClass.UpdateStatus(querry);
+	}
+
+	@Override
+	public List<DisEmployee> display() {
+
+		String querry = QueeryGenator.selectQuerry();
+		System.out.println(querry);
+		ResultSet rs = QueryClass.retriveData(querry);
+		List<DisEmployee> disEmployee = new ArrayList<DisEmployee>();
+		try {
+			while (rs.next()) {
+				disEmployee.add(new DisEmployee(rs.getString(1),rs.getString(2), rs.getString(3), rs.getString(4), rs.getLong(5),
+						rs.getString(6), rs.getString(7), rs.getBoolean(8)));
+			}
+		} catch (SQLException e) {
+
+			e.printStackTrace();
+		}
+		return disEmployee;
+	}
+
+	@Override
+	public boolean Auth(String name, String password) {
+		String sql = QueeryGenator.adminChecking(name, password);
+		System.out.println(sql);
+		ResultSet rs = QueryClass.retriveData(sql);
+		try {
+			while (rs.next()) {
+
+				if (rs.getString(1).equals(name) && rs.getString(2).equals(password)) {
+					return true;
+				}
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return false;
+
+	}
+
+	@Override
+	public List<Employee> displayEmp(String id) {
+		String querry = QueeryGenator.selectQuerry(id);
+		System.out.println(querry);
+		ResultSet rs = QueryClass.retriveData(querry);
+		List<Employee> employee = new ArrayList<Employee>();
+		try {
+			while (rs.next()) {
+				Employee e=new Employee();
+				e.setId(rs.getString(1));
+				e.setName(rs.getString(2));
+				e.setDateFormat(rs.getString(3));
+				e.setDepartment(rs.getString(4));
+				e.setSalary(rs.getFloat(5));
+				e.setExperience(rs.getString(6));
+				e.setPermanent(rs.getString(7));
+				e.setPresentAddress(rs.getString(8));
+				e.setQualification(rs.getString(9));
+				e.setUniversity(rs.getString(10));
+				e.setPercentage(rs.getFloat(11));
+				e.setYear(rs.getString(12));
+				e.setContactNo(rs.getString(13));
+				e.setEmailID(rs.getString(14));
+				e.setStatus(rs.getBoolean(15));
+				employee.add(e);
+			}
+		} catch (SQLException e1) {
+
+			e1.printStackTrace();
+		}
+		return employee;
+	}
+
+}

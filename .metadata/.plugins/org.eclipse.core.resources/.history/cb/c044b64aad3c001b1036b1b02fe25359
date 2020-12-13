@@ -1,0 +1,41 @@
+package Routes;
+
+import java.io.IOException;
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import JDBC.Controller.Controller;
+
+@WebServlet("/delete")
+@MultipartConfig
+public class DeleteRoute extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+
+	public void init() {
+		// 1. Load JDBC driver
+		try {
+			Class.forName("com.mysql.cj.jdbc.Driver");
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+	}
+
+	@Override
+	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		Controller ctr = new Controller();
+		int id = Integer.parseInt(req.getParameter("id"));
+		String password = req.getParameter("password");
+		if (ctr.delete(id)) {
+			
+			resp.sendRedirect("Landingpage.html");
+		}else{
+			System.out.println("false");
+		}
+	}
+
+}

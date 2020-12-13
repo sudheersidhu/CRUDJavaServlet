@@ -1,0 +1,47 @@
+package JDBC..SQLQueries;
+
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
+
+public class QueryClass {
+    public static boolean insertData(String sql) {
+        try {
+            if (Connect.connection().execute(sql)) {
+                return true;
+            }
+        } catch (SQLException e) {
+       //TODO:handle exception
+            e.printStackTrace();
+        }
+        ;
+        return false;
+    } 
+    public static ResultSet retriveData(String sql) {
+        try {
+            return Connect.connection().executeQuery(sql);
+        } catch (Exception e) {
+            //TODO:handle exception
+            e.printStackTrace();
+        }
+        return null;
+    }
+    public static boolean updateDate(String sql) {
+        try {
+            return Connect.connection().execute(sql);
+        } catch (SQLException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        return false;
+    }
+    public static boolean UpdateStatus(String sql) {
+        try {
+            return Connect.connection().execute(sql);
+        } catch (SQLException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        return false;
+    }
+}

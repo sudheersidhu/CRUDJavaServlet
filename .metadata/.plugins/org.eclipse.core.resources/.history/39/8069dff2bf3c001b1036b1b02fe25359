@@ -1,0 +1,52 @@
+package JDBC.Models;
+
+public class Employee {
+    public final int id;
+    public final String name;
+    public final String dateFormat;
+    public final String department;
+    public final float salary;
+    public final String Experience;
+    public final String contactNo;
+    public final String emailID;
+    public final boolean status;
+    public final String permanent;
+    public final String presentAddress;
+    public final String qualification;
+    public final String university;
+    public final float percentage;
+    public final String year;
+
+
+    @Override
+    public String toString() {
+        return "Employee [Experience=" + Experience + ", contactNo=" + contactNo + ", dateFormat=" + dateFormat
+                + ", department=" + department + ", emailID=" + emailID + ", id=" + id + ", name=" + name
+                + ", percentage=" + percentage + ", permanent=" + permanent + ", presentAddress=" + presentAddress
+                + ", qualification=" + qualification + ", salary=" + salary + ", status=" + status + ", university="
+                + university + ", year=" + year + "]";
+    }
+
+    public Employee(int id, String name, String dateFormat, String department, float salary, String experience,
+            String contactNo, String emailID, boolean status, String permanent, String presentAddress,
+            String qualification, String university, float percentage, String year) {
+        this.id = id;
+        this.name = name;
+        this.dateFormat = dateFormat;
+        this.department = department;
+        this.salary = salary;
+        Experience = experience;
+        this.contactNo = contactNo;
+        this.emailID = emailID;
+        this.status = status;
+        this.permanent = permanent;
+        this.presentAddress = presentAddress;
+        this.qualification = qualification;
+        this.university = university;
+        this.percentage = percentage;
+        this.year = year;
+    }
+
+	
+
+}

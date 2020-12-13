@@ -1,0 +1,9 @@
+package inter;
+
+public interface DataUtil {
+    String url = "jdbc:mysql://localhost:3306/Test";
+    String user = "ran";
+    String password = "password";
+
+    
+}

@@ -1,0 +1,60 @@
+package Routes;
+
+import java.io.IOException;
+import java.io.PrintWriter;
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import JDBC.Controller.Controller;
+import JDBC.Models.Employee;
+@WebServlet("/update")
+@MultipartConfig
+public class UpdateRotue extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+
+	public void init() {
+		try {
+			Class.forName("com.mysql.cj.jdbc.Driver");
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+	}
+
+	@Override
+	protected void doPost(HttpServletRequest req, HttpServletResponse response) throws ServletException, IOException {
+		System.out.println("got request");
+		Employee e = new Employee();
+		PrintWriter pw=response.getWriter();
+		e.id = req.getParameter("id");
+		e.setName(req.getParameter("fnamez") + " " + req.getParameter("lnamez"));
+		e.dateFormat = req.getParameter("dateFormat");
+		e.department = req.getParameter("department");
+		e.salary = Float.parseFloat(req.getParameter("salary"));
+		e.contactNo = req.getParameter("contactNo");
+		e.emailID = req.getParameter("emailID");
+		e.Experience = req.getParameter("Experience");
+		e.qualification = req.getParameter("qualification");
+		e.university = req.getParameter("university");
+		e.percentage = Float.parseFloat(req.getParameter("percentage"));
+		e.year = req.getParameter("year");
+		e.permanent = req.getParameter("permanent");
+		e.presentAddress = req.getParameter("presentAddress");
+		
+
+		Controller ctr = new Controller();
+		if (ctr.update(e,e.id)) {
+			System.out.println("false");
+		} else {
+			pw.println("<script type=\"text/javascript\">");
+			pw.println("$('[href='#Read']').tab('show');"
+					+ "( '$('[href='#Read']').trigger( 'onClick' )");
+			pw.println("</script>");
+			pw.close();
+		}
+	}
+}

@@ -1,0 +1,61 @@
+package Routes;
+
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.ArrayList;
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import com.google.gson.Gson;
+
+@WebServlet("/reading")
+@MultipartConfig
+public class ReadingData extends HttpServlet {
+
+	private static final long serialVersionUID = 1L;
+
+	public void init() {
+
+		try {
+			Class.forName("com.mysql.cj.jdbc.Driver");
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+	}
+
+	@Override
+	protected void doPost(HttpServletRequest req, HttpServletResponse response) throws ServletException, IOException {
+		
+		System.out.println("ranjith");
+		 ArrayList<PersonData> dataLst = new ArrayList<PersonData>();
+		String name = "name";
+	    String email = "email";
+	    String address = "aadress";
+	    String syKP ="syKP";
+
+	    PersonData person = new PersonData(name, address, syKP, email);
+	    dataLst.add(person);
+	    //request.setAttribute("name", request.getParameter("name"));
+	    //request.setAttribute("email", request.getParameter("email"));
+	    //System.out.println(dataLst.getData().get(0).getNimi());
+
+	    response.setContentType("application/json");
+	    response.setCharacterEncoding("UTF-8");
+	    Gson data = new Gson();
+	    String tmp = data.toJson(dataLst); // won't work if you don't assign it to a string.
+	    System.out.println(tmp);
+	    response.getWriter().write(tmp);
+		
+	}
+
+	@Override
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		System.out.println("ranjith");
+	}
+}

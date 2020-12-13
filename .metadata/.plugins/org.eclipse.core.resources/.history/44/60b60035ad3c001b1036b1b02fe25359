@@ -1,0 +1,16 @@
+package Routes;
+
+public class PersonData {
+	String name ;
+    String email;
+    String address;
+    String syKP;
+	public PersonData(String name, String email, String address, String syKP) {
+		super();
+		this.name = name;
+		this.email = email;
+		this.address = address;
+		this.syKP = syKP;
+	}
+    
+}

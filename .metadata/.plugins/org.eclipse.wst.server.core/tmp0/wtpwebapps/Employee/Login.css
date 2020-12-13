@@ -1,0 +1,26 @@
+body {
+	background-color: rgba(225, 225, 225, 0.89);
+}
+
+#main {
+	background-color: white;
+	margin: 150px auto;
+	width: 400px;
+	height: 300px;
+	/* box-shadow: 0px 0px 8px rgb(10, 10, 10); */
+	border-radius: 10px;
+	/* padding: 40px; */
+}
+
+#sub {
+	margin-top: 50px;
+}
+
+#admin, #password {
+	margin: 20px auto;
+	width: 300px;
+}
+
+#submit {
+	margin: auto 120px;
+}

@@ -1,0 +1,275 @@
+var table = document.getElementById("table");
+document.getElementById("validationCustom01").value = Math.random()
+		.toString(36).substr(2, 9);
+
+// Retrivewing For data Base
+function Reading() {
+
+	if (window.XMLHttpRequest) {
+		var xhttp = new XMLHttpRequest();
+		xhttp.onreadystatechange = function() {
+			if (xhttp.readyState == 4 && xhttp.status == 200) {
+				var myArr = JSON.parse(xhttp.responseText);
+				addToTable(myArr); // function to add data to table.
+			}
+		}
+		xhttp.open("get", "reading", true);
+		xhttp.send(null);
+	} else
+		console.log('not working');
+}
+function Inserting() {
+	if (window.XMLHttpRequest) {
+		var xhttp = new XMLHttpRequest();
+		xhttp.onreadystatechange = function() {
+			if (xhttp.readyState == 4 && xhttp.status == 200) {
+				console.log("Inserted");
+				var myArr = xhttp.response.text;
+				Reading();
+			}
+		}
+		xhttp.open("POST", "insert", true);
+		var formData = new FormData(document.getElementById("fq"));
+		console.log(formData);
+		xhttp.send(formData);
+	} else
+		console.log('not working');
+}
+// Update
+function UpdateFrom() {
+	var formData = new FormData(document.getElementById("fz"));
+	var xhr = new XMLHttpRequest();
+	xhr.open('Post', 'update', true);
+	xhr.send(formData);
+	xhr.onreadystatechange = function() {
+		if (xhr.readyState == 4 && xhr.status == 200) {
+			Reading();
+			console.log("updated");
+		}
+	};
+}
+// Called by A link Lisenter
+function UpdateFromLoaderDataFetcher(value) {
+	var name = value;
+	var data = new FormData();
+	data.append('id1', name);
+	var xhr = new XMLHttpRequest();
+	xhr.open('Post', 'UpdateRe', true);
+	xhr.send(data);
+	xhr.onreadystatechange = function() {
+		if (xhr.readyState == 4 && xhr.status == 200) {
+			var myArr = JSON.parse(xhr.responseText);
+			console.log(myArr);
+			FormFiller(myArr);
+			$('[href="#Update"]').tab('show');
+		}
+	};
+}
+// Called by AddtoTable Button Lisentner
+function DeleteStatus(value) {
+	var name = value;
+	var data = new FormData();
+	data.append('id1', name);
+	var xhr = new XMLHttpRequest();
+	xhr.open('Post', 'delete', true);
+	xhr.send(data);
+	xhr.onreadystatechange = function() {
+		if (xhr.readyState == 4 && xhr.status == 200) {
+			console.log(xhr);
+			var myArr = JSON.parse(xhr.responseText);
+			addToTable(myArr); // function to add data to table.
+		}
+	};
+}
+function addToTable(data) {
+	var dataTable = document.getElementById("table");
+	for (var i = dataTable.rows.length; i > 0; i--) { // iterate through rows
+		if (i > 1) {
+			row = dataTable.rows[i - 1];
+			row.parentNode.removeChild(row);
+		}
+	}
+	for (var i = 0; i < data.length; i++) {
+		var row = dataTable.insertRow();
+		var tmp = data[i];
+		var cell0 = row.insertCell(); // id
+		var cell1 = row.insertCell(); // name
+		var cell2 = row.insertCell(); // contact no
+		var cell3 = row.insertCell(); // emailid
+		var cell4 = row.insertCell(); // hQ
+		var cell5 = row.insertCell(); // dep
+		var cell6 = row.insertCell(); // dateofjoin
+		var cell7 = row.insertCell(); // status
+		cell0.innerHTML = '<button class="btn btn-primary">' + tmp.id
+				+ "</button>";
+		cell1.innerHTML = tmp.name;
+		cell2.innerHTML = tmp.number;
+		cell3.innerHTML = tmp.emailId;
+		cell4.innerHTML = tmp.highestQualification;
+		cell5.innerHTML = tmp.department;
+		cell6.innerHTML = tmp.dateOfJoin;
+		cell7.innerHTML = '<button class="btn btn-success btn-rounded" styel } >'
+				+ (tmp.status ? 'Active' : 'InActive') + '</button>';
+		colors(cell7.childNodes[0], tmp.status);
+	}
+	table = document.getElementById("table");
+	var rows = table.rows;
+	for (var i = 1; i < rows.length; i++) {
+		// Button Lister Attacher
+		rows[i].cells[7].onclick = function(e) {
+
+			rowid = e.target.parentNode.parentNode.firstChild.textContent;
+			DeleteStatus(rowid);
+		};
+		// A link Lisetener Attacher
+		rows[i].cells[0].onclick = function(e) {
+
+			rowid = e.target.firstChild.textContent;
+			console.log(rowid);
+			UpdateFromLoaderDataFetcher(rowid);
+		};
+	}
+}
+// Utils
+function colors(button, value) {
+	value ? button.className = "btn btn-success btn-rounded "
+			: button.className = "btn btn-danger";
+}
+function Phonecheck() {
+
+	var mobile = document.getElementById('validationCustom77');
+
+	var goodColor = "#ffffff";
+	var badColor = "#ff4646";
+	
+	
+	if (mobile.value.length <= 10) {
+
+		mobile.style.backgroundColor = badColor;
+
+	} else {
+		mobile.style.backgroundColor = goodColor;
+		mobile.value = mobile.value.substring(0, 10);
+	}
+}function Yearcheck() {
+
+	var year = document.getElementById('validationCustom65');
+
+	var goodColor = "#ffffff";
+	var badColor = "#ff4646";
+	
+	
+	if (year.value.length <= 4) {
+
+		year.style.backgroundColor = badColor;
+
+	} else {
+		year.style.backgroundColor = goodColor;
+		year.value = mobile.value.substring(0, 4);
+	}
+}
+
+function FormFiller(data) {
+
+	// your containing element
+	var formElement = document.getElementById('fz');
+
+	// populate the form with our JSON object
+
+	populate(formElement, data[0]);
+	$("#fz").find("#validationCustom21").val(data[0]['name'].split(" ")[0]);
+	$("#fz").find("#validationCustom31").val(data[0]['name'].split(" ")[1]);
+
+}
+
+function populate(form, data, basename) {
+	for ( var key in data) {
+		if (!data.hasOwnProperty(key)) {
+			continue;
+		}
+
+		var name = key;
+		var value = data[key];
+
+		if ('undefined' === typeof value) {
+			value = '';
+		}
+
+		if (null === value) {
+			value = '';
+		}
+
+		// handle array name attributes
+		if (typeof (basename) !== "undefined") {
+			name = basename + "[" + key + "]";
+		}
+
+		if (value.constructor === Array) {
+			name += '[]';
+		} else if (typeof value == "object") {
+			populate(form, value, name);
+			continue;
+		}
+
+		// only proceed if element is set
+		var element = form.elements.namedItem(name);
+		if (!element) {
+			continue;
+		}
+
+		var type = element.type || element[0].type;
+
+		switch (type) {
+		default:
+			element.value = value;
+			break;
+
+		case 'radio':
+		case 'checkbox':
+			var values = value.constructor === Array ? value : [ value ];
+			for (var j = 0; j < element.length; j++) {
+				element[j].checked = values.indexOf(element[j].value) > -1;
+			}
+			break;
+
+		case 'select-multiple':
+			var values = value.constructor === Array ? value : [ value ];
+			for (var k = 0; k < element.options.length; k++) {
+				element.options[k].selected = (values
+						.indexOf(element.options[k].value) > -1);
+			}
+			break;
+
+		case 'select':
+		case 'select-one':
+			element.value = value.toString() || value;
+			break;
+
+		case 'date':
+			element.value = new Date(value).toISOString().split('T')[0];
+			break;
+		}
+
+	}
+};
+if (typeof module !== 'undefined' && module.exports) {
+	module.exports = populate;
+}
+(function() {
+	'use strict';
+	window.addEventListener('load', function() {
+		// Fetch all the forms we want to apply custom Bootstrap validation
+		// styles to
+		var forms = document.getElementsByClassName('needs-validation');
+		// Loop over them and prevent submission
+		var validation = Array.prototype.filter.call(forms, function(form) {
+			form.addEventListener('submit', function(event) {
+				if (form.checkValidity() === false) {
+					event.preventDefault();
+					event.stopPropagation();
+				}
+				form.classList.add('was-validated');
+			}, false);
+		});
+	}, false);
+})();

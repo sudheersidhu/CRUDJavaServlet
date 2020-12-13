@@ -1,0 +1,45 @@
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+
+
+
+import JDBC.Controller.Controller;
+import JDBC.Models.DisEmployee;
+import JDBC.Models.Employee;
+import JDBC.inter.DataUtil;
+import JDBC.inter.MainInte;
+
+public class App {
+    static MainInte mainInte = new Controller();
+
+    static void display() {
+
+        for (DisEmployee dEmployee : mainInte.display(1)) {
+            System.out.println(dEmployee.toString());
+        }
+    }
+
+    static void insert() {
+        Employee e = new Employee(21, "name", "2020-12-21", "ca", 100, "2", "12232321", "emailID", true, "permanent",
+                "presentAddress", "qualification", "university", 10, "year");
+
+        System.out.println(mainInte.insert(e));
+    }
+    static void delete(){
+        mainInte.delete(21);
+    }
+    static void update(){
+        
+    }
+
+    public static void main(String[] args) throws Exception {
+        delete();
+        // insert();
+        display();
+        // Connection cn = DriverManager.getConnection(DataUtil.url, DataUtil.user, DataUtil.password);
+        // java.sql.PreparedStatement t=cn.prepareStatement("insert into emp values(?,?,?)");
+        // t.setString(1, "x");
+        // System.out.println(t.toString());
+    }
+}

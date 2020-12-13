@@ -1,0 +1,174 @@
+package JDBC.Models;
+
+public class Employee {
+    public int id;
+    public String name;
+    public String dateFormat;
+    public String department;
+    public float salary;
+    public String Experience;
+    public String contactNo;
+    public String emailID;
+    public boolean status;
+    public String permanent;
+    public String presentAddress;
+    public String qualification;
+    public String university;
+    public float percentage;
+    public String year;
+
+
+    public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getDateFormat() {
+		return dateFormat;
+	}
+
+	public void setDateFormat(String dateFormat) {
+		this.dateFormat = dateFormat;
+	}
+
+	public String getDepartment() {
+		return department;
+	}
+
+	public void setDepartment(String department) {
+		this.department = department;
+	}
+
+	public float getSalary() {
+		return salary;
+	}
+
+	public void setSalary(float salary) {
+		this.salary = salary;
+	}
+
+	public String getExperience() {
+		return Experience;
+	}
+
+	public void setExperience(String experience) {
+		Experience = experience;
+	}
+
+	public String getContactNo() {
+		return contactNo;
+	}
+
+	public void setContactNo(String contactNo) {
+		this.contactNo = contactNo;
+	}
+
+	public String getEmailID() {
+		return emailID;
+	}
+
+	public void setEmailID(String emailID) {
+		this.emailID = emailID;
+	}
+
+	public boolean isStatus() {
+		return status;
+	}
+
+	public void setStatus(boolean status) {
+		this.status = status;
+	}
+
+	public String getPermanent() {
+		return permanent;
+	}
+
+	public void setPermanent(String permanent) {
+		this.permanent = permanent;
+	}
+
+	public String getPresentAddress() {
+		return presentAddress;
+	}
+
+	public void setPresentAddress(String presentAddress) {
+		this.presentAddress = presentAddress;
+	}
+
+	public String getQualification() {
+		return qualification;
+	}
+
+	public void setQualification(String qualification) {
+		this.qualification = qualification;
+	}
+
+	public String getUniversity() {
+		return university;
+	}
+
+	public void setUniversity(String university) {
+		this.university = university;
+	}
+
+	public float getPercentage() {
+		return percentage;
+	}
+
+	public void setPercentage(float percentage) {
+		this.percentage = percentage;
+	}
+
+	public String getYear() {
+		return year;
+	}
+
+	public void setYear(String year) {
+		this.year = year;
+	}
+
+	@Override
+    public String toString() {
+        return "Employee [Experience=" + Experience + ", contactNo=" + contactNo + ", dateFormat=" + dateFormat
+                + ", department=" + department + ", emailID=" + emailID + ", id=" + id + ", name=" + name
+                + ", percentage=" + percentage + ", permanent=" + permanent + ", presentAddress=" + presentAddress
+                + ", qualification=" + qualification + ", salary=" + salary + ", status=" + status + ", university="
+                + university + ", year=" + year + "]";
+    }
+	public Employee(){
+		
+	}
+    public Employee(int id, String name, String dateFormat, String department, float salary, String experience,
+            String contactNo, String emailID, boolean status, String permanent, String presentAddress,
+            String qualification, String university, float percentage, String year) {
+        this.id = id;
+        this.name = name;
+        this.dateFormat = dateFormat;
+        this.department = department;
+        this.salary = salary;
+        Experience = experience;
+        this.contactNo = contactNo;
+        this.emailID = emailID;
+        this.status = status;
+        this.permanent = permanent;
+        this.presentAddress = presentAddress;
+        this.qualification = qualification;
+        this.university = university;
+        this.percentage = percentage;
+        this.year = year;
+    }
+
+	
+
+}

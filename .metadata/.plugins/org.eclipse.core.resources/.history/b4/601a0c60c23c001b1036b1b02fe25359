@@ -1,0 +1,73 @@
+package Routes;
+
+import java.io.IOException;
+import java.sql.Date;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.format.DateTimeFormatter;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Map;
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import com.google.gson.Gson;
+
+import JDBC.Controller.Controller;
+import JDBC.Models.DisEmployee;
+import JDBC.Models.Employee;
+import JDBC.inter.DataValues;
+
+@WebServlet("/insert")
+@MultipartConfig
+public class InsertRoute extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+
+	public void init() {
+		try {
+			Class.forName("com.mysql.cj.jdbc.Driver");
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+	}
+
+	@Override
+	protected void doPost(HttpServletRequest req, HttpServletResponse response) throws ServletException, IOException {
+	
+		Employee e = new Employee();
+		
+		e.id = Integer.parseInt(req.getParameter("id"));
+		e.setName(req.getParameter("fname")+" "+req.getParameter("lname"));
+		
+		try {
+			e.dateFormat=new SimpleDateFormat("dd/MM/yyyy").parse(req.getParameter("date")).toString();
+		} catch (ParseException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		e.department=req.getParameter("Department");
+		e.salary=Float.parseFloat(req.getParameter("sal"));
+		e.contactNo=req.getParameter("num");
+		
+		
+		
+		Controller ctr = new Controller();
+		if (ctr.insert(e)) {
+			System.out.println("false");
+		} else {
+			List<DisEmployee> dataLst = ctr.display();
+			response.setContentType("application/json");
+			response.setCharacterEncoding("UTF-8");
+			Gson data = new Gson();
+			String tmp = data.toJson(dataLst); // won't work if you don't assign
+
+			response.getWriter().write(tmp);
+		}
+	}
+
+}

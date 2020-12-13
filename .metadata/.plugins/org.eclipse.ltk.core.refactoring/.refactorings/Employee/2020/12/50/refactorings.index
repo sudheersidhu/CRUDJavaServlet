@@ -1,0 +1,30 @@
+1607773518718	Delete element
+1607774018151	Copy package
+1607774026992	Delete elements
+1607774072884	Rename compilation unit 'Hello.java'
+1607774259007	Move 5 resources to 'WebContent'
+1607774875629	Move 'Landingpage.css' to 'pages'
+1607774878221	Move 'Landingpage.html' to 'pages'
+1607774881981	Move 'table.html' to 'pages'
+1607777073084	Delete elements
+1607778070884	Rename type 'DataUtil'
+1607778739705	Delete element
+1607787861350	Move 'pages' to 'WEB-INF'
+1607788080299	Move 'table.html' to 'WEB-INF'
+1607788093706	Move 'table.html' to 'WebContent'
+1607788846224	Move 'table.html' to 'pages'
+1607788851408	Move 'Login.html' to 'pages'
+1607788854206	Move 'Login.css' to 'pages'
+1607788914609	Move 'Login.html' to 'WEB-INF'
+1607788933975	Move 'Login.html' to 'WebContent'
+1607789027105	Move 'pages' to 'WebContent'
+1607789938615	Rename type 'HelloServlet'
+1607792431546	Move 4 resources to 'WebContent'
+1607794833943	Delete element
+1607800018156	Delete element
+1607803355642	Rename function 'addData'
+1607803454997	Rename function 'tableText'
+1607806955770	Rename function 'addData'
+1607806969740	Rename function 'Reding'
+1607814224010	Rename type 'LoginPage'
+1607814234823	Rename type 'ReadingData'

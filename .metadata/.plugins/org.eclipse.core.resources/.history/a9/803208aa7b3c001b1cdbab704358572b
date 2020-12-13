@@ -1,0 +1,31 @@
+package JDBC.SQLQueries;
+
+import java.sql.*;
+
+import JDBC.inter.DataValues;
+
+public class Connect {
+	
+    public static Statement connection() {
+        Statement st = null;
+        try {
+            Connection cn = DriverManager.getConnection(DataValues.url, DataValues.user, DataValues.password);
+            st = cn.createStatement();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return st;
+    }
+
+    public static PreparedStatement preparedConnection(String sql) {
+        PreparedStatement st = null;
+        try {
+            Connection cn = DriverManager.getConnection(DataValues.url, DataValues.user, DataValues.password);
+            st = cn.prepareStatement(sql);
+        } catch (Exception e) {// TODO:handle exception
+            e.printStackTrace();
+        }
+        return st;
+    }
+
+}
